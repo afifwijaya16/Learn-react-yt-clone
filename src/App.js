@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Container } from "react-bootstrap";
+import Header from "./components/header/Header";
+import Sidebar from "./components/sidebar/Sidebar";
+import HomeScreen from "./screens/homeScreen/HomeScreen";
 
-function App() {
+import "./_app.scss";
+
+const App = () => {
+  const [sidebar, toogleSidebar] = useState(false);
+
+  const handleToogleSidebar = () => toogleSidebar((value) => !value);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header handleToogleSidebar={handleToogleSidebar} />
+      <div className="app__container border border-info">
+        <Sidebar sidebar={sidebar} handleToogleSidebar={handleToogleSidebar} />
+        <Container fluid className="app_main border border-warning">
+          <HomeScreen />
+        </Container>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
