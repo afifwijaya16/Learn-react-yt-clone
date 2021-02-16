@@ -6,7 +6,6 @@ import {
   MdExitToApp,
   MdThumbUp,
   MdHistory,
-  MdApps,
   MdLibraryBooks,
   MdHome,
   MdSentimentDissatisfied,
@@ -33,6 +32,14 @@ const Sidebar = ({ sidebar, handleToogleSidebar }) => {
       <li>
         <MdHistory size={23} />
         <span>History</span>
+      </li>
+      <li>
+        <MdLibraryBooks size={23} />
+        <span>Library</span>
+      </li>
+      <li>
+        <MdSentimentDissatisfied size={23} />
+        <span>I Dont Know</span>
       </li>
       <hr />
       <li>
