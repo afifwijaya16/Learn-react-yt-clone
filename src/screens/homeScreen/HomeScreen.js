@@ -10,13 +10,16 @@ import {
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
+import SkeletonVideo from "../../components/skeletons/SkeletonVideo";
 const HomeScreen = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPopularVideos());
   }, [dispatch]);
 
-  const { videos, activeCategory } = useSelector((state) => state.homeVideos);
+  const { videos, activeCategory, loading } = useSelector(
+    (state) => state.homeVideos
+  );
 
   const fetchData = () => {
     if (activeCategory === "All") dispatch(getPopularVideos());
@@ -36,11 +39,17 @@ const HomeScreen = () => {
         }
         className="row"
       >
-        {videos.map((video, index) => (
-          <Col lg={3} md={4} key={index}>
-            <Video video={video} />
-          </Col>
-        ))}
+        {!loading
+          ? videos.map((video, index) => (
+              <Col lg={3} md={4} key={index}>
+                <Video video={video} />
+              </Col>
+            ))
+          : [...Array(20)].map(() => (
+              <Col lg={3} md={4}>
+                <SkeletonVideo />
+              </Col>
+            ))}
       </InfiniteScroll>
     </Container>
   );

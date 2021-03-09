@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./_video.scss";
 import { AiFillEye } from "react-icons/ai";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import request from "../../api";
 
 import moment from "moment";
@@ -60,8 +61,8 @@ const Video = ({ video }) => {
   return (
     <div className="video">
       <div className="video__top">
-        <img src={medium.url} alt="video thumb" />
-        <span>{_duration}</span>
+        <LazyLoadImage alt="video thumb" effect="blur" src={medium.url} />
+        <span className="video__top__duration">{_duration}</span>
       </div>
       <div className="video__title">{title}</div>
       <div className="video__details">
@@ -71,7 +72,7 @@ const Video = ({ video }) => {
         <span>&nbsp; {moment(publishedAt).fromNow()}</span>
       </div>
       <div className="video__channel">
-        <img src={channelIcon?.url} alt="avatar" />
+        <LazyLoadImage alt="avatar" effect="blur" src={channelIcon?.url} />
         <p>{channelTitle}</p>
       </div>
     </div>
