@@ -6,6 +6,7 @@ import request from "../../api";
 
 import moment from "moment";
 import numeral from "numeral";
+import { useHistory } from "react-router";
 const Video = ({ video }) => {
   const {
     id,
@@ -27,6 +28,7 @@ const Video = ({ video }) => {
 
   const _videoId = id?.videoId || id;
 
+  const history = useHistory();
   useEffect(() => {
     const get_video_details = async () => {
       const {
@@ -58,8 +60,11 @@ const Video = ({ video }) => {
     get_channel_icons();
   }, [channelId]);
 
+  const handleVideoClick = () => {
+    history.push(`/watch/${_videoId}`);
+  };
   return (
-    <div className="video">
+    <div className="video" onClick={handleVideoClick}>
       <div className="video__top">
         <LazyLoadImage alt="video thumb" effect="blur" src={medium.url} />
         <span className="video__top__duration">{_duration}</span>

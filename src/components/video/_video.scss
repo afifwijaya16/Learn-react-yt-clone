@@ -5,7 +5,9 @@
     padding: 0.7rem;
     font-weight: 500;
     font-size: 0.7rem;
-
+    &:hover {
+        cursor: pointer;
+    }
     &__top {
         margin-bottom: 0.5rem;
         position: relative;
