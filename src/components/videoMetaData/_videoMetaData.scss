@@ -20,6 +20,10 @@
             border-radius: 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+
+            &.btn-gray {
+                background-color: gray;
+            }
             &:hover {
                 color: #fff;
             }
@@ -33,6 +37,7 @@
         font-size: 0.9rem;
         white-space: pre-line;
         border-bottom: 0.2px solid $border-color;
+        padding-bottom: 7px;
         .showMoreText {
            text-decoration: none;
            display: block;

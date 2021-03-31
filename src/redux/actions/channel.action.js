@@ -4,6 +4,7 @@ import {
   CHANNEL_DETAILS_FAIL,
   CHANNEL_DETAILS_REQUEST,
   CHANNEL_DETAILS_SUCCESS,
+  SET_SUBSCRIPTION_STATUS,
 } from "../ActionType";
 
 export const getChannelDetails = (id) => async (dispatch) => {
@@ -28,5 +29,26 @@ export const getChannelDetails = (id) => async (dispatch) => {
       type: CHANNEL_DETAILS_FAIL,
       payload: error.responsed.data,
     });
+  }
+};
+
+export const checkSubcriptionStatus = (id) => async (dispatch, getState) => {
+  try {
+    const { data } = await request("subscriptions", {
+      params: {
+        part: "snippet",
+        forChannelId: id,
+        mine: true,
+      },
+      headers: {
+        Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+    });
+    dispatch({
+      type: SET_SUBSCRIPTION_STATUS,
+      payload: data.items.length !== 0,
+    });
+  } catch (error) {
+    console.log(error.response.data);
   }
 };
