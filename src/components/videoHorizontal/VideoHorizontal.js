@@ -23,6 +23,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
       resourceId,
     },
   } = video;
+
   const isVideo = !(id.kind === "youtube#channel" || subScreen);
 
   const [views, setViews] = useState(null);
@@ -43,7 +44,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
       setViews(items[0].statistics.viewCount);
     };
     if (isVideo) get_video_details();
-  }, [id]);
+  }, [id, isVideo]);
 
   useEffect(() => {
     const get_channel_icon = async () => {
