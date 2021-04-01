@@ -3,7 +3,7 @@ import "./_videoHorizontal.scss";
 
 import { AiFillEye } from "react-icons/ai";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import request from "../../api";
+// import request from "../../api";
 
 import moment from "moment";
 import numeral from "numeral";
